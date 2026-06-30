@@ -1,0 +1,17 @@
+{
+  "persons": [
+    {
+      "name": "Geralt",
+      "number": "000-111-222",
+      "important": false,
+      "id": "Mb9OZuWwuYo"
+    },
+    {
+      "name": "Nikola",
+      "number": "90662",
+      "important": true,
+      "id": "9K-1ofO2kt8"
+    }
+  ],
+  "$schema": "./node_modules/json-server/schema.json"
+}
