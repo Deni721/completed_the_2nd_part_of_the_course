@@ -11,6 +11,24 @@
       "number": "90662",
       "important": true,
       "id": "9K-1ofO2kt8"
+    },
+    {
+      "name": "Spider-Man",
+      "number": "777",
+      "important": false,
+      "id": "IypeDCcBazs"
+    },
+    {
+      "name": "Iron Man",
+      "number": "111",
+      "important": false,
+      "id": "pj6_EyR525I"
+    },
+    {
+      "name": "halk",
+      "number": "333",
+      "important": false,
+      "id": "BQ20RBpdbLM"
     }
   ],
   "$schema": "./node_modules/json-server/schema.json"

@@ -4,6 +4,7 @@ import RenderPerson from './components/Render person/RenderPerson'
 import Forma from './components/Forma/Forma'
 import { service } from './components/service/Service'
 import './index.css'
+import { base_url } from './components/service/Service'
 
 function App() {
 
@@ -19,11 +20,14 @@ let[errorAddPerson,seterrorAddPerson]=useState(false)
 useEffect(()=>{
 
 console.log('start useEffect')
-service.get().then((data) => setPersons(data))
+service.get().then((data) => {
+  setPersons(data)
+  console.log('RESPONSE SERVER',data)
+})
 
 },[])
 
-// ОБРАБОТКА КНОПКИ
+// ОБРАБОТКА КНОПКИ СОЗДАНИЯ ЗАПИСИ
 const handleFormClick=(ev)=>{
 
 ev.preventDefault()
@@ -35,14 +39,14 @@ let findPerson=copy.find( el=> el.name===newPerson.name)
 let findNumber=copy.find(el => el.number===newNumber)
 console.log(findNumber,findPerson)
 
-if (findPerson===undefined&&findNumber===undefined) {
+if (findPerson===undefined && findNumber===undefined ) {
  copy.push(newPerson)
  service.create(newPerson)
  setPersons(copy)
  setsuccesAddPerson(true)
  setInterval(()=>{setsuccesAddPerson(false)},5000)
 
-}else if (findPerson!==undefined&&findNumber===undefined) {
+}else if ( findPerson!==undefined && findNumber===undefined ) {
   service.formUpd(findPerson,newNumber,seterrorAddPerson)
 
 setPersons(copy.map( el => {
@@ -54,7 +58,7 @@ setPersons(copy.map( el => {
 
   }))
 
-}else if (findPerson!==undefined&&findNumber!==undefined ) {
+}else if (findPerson!==undefined && findNumber!==undefined ) {
    alert(`${findPerson.name} is already added to phonebook`)
 
 }
@@ -95,7 +99,7 @@ setSearch([])
 //ОБРАБОТКА КЛИКА КНОПКИ Toggler important
 
 const handleTogglerImp= (ID) => {
-let url =`http://localhost:3003/persons/${ID}`
+let url =base_url + `/${ID}`
 
 let findPerson=persons.find( el => el.id===ID)
 let dataChange={...findPerson,important:!findPerson.important}

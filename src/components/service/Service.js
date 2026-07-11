@@ -1,13 +1,14 @@
 import axios from "axios"
 
+ let BASE_URL =  'http://localhost:3001/api/persons'
+
 const get=() => {
-    return axios.get('http://localhost:3003/persons').
-    then( responce => responce.data).
+    return axios.get(BASE_URL).then(req => req.data).
     catch( err => console.log('Error getPerson:',err.message))
 }
 
 const create=(newPerson) => {
-return axios.post('http://localhost:3003/persons',newPerson).
+return axios.post(BASE_URL,newPerson).
 then( (responce) => console.log(responce.status) ).
 catch( (err) => console.log('Error create new Person:',err.message))
 }
@@ -19,7 +20,7 @@ const update=(url,change,ID,setPersons,persons) => {
 }
 
 const formUpd=(obj,newNumber,setError)=>{
-axios.put(`http://localhost:3003/persons/${obj.id}`,{...obj,number:newNumber}).catch( (err) =>{
+axios.put(BASE_URL + `/${obj.id}`,{...obj,number:newNumber}).catch( (err) =>{
         
         setError(true)
         setTimeout( () => {setError(false)},5000)
@@ -28,7 +29,8 @@ axios.put(`http://localhost:3003/persons/${obj.id}`,{...obj,number:newNumber}).c
 }
 
 const del = (id)=>{
-    return axios.delete(`http://localhost:3003/persons/${id}`)
+    return axios.delete(BASE_URL + `/${id}`)
 }
 
-export  const service ={get,create,update,del,formUpd}
+export const base_url = BASE_URL
+export  const service = {get,create,update,del,formUpd}
